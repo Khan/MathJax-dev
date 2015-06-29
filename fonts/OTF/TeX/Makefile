@@ -113,7 +113,7 @@ ttf: ff
 			$(TTFAUTOHINT) --windows-compatibility --symbol $$file $$file.hinted; \
 		else \
 			$(TTFAUTOHINT) --windows-compatibility $$file $$file.hinted; \
-		fi \
+		fi; \
         mv $$file.hinted $$file; \
 		done
 
