@@ -109,12 +109,12 @@ ttf: ff
 
 	@for file in `ls ttf/*.ttf`; do \
 		echo "hinting $$file"; \
-		if $(GREP) -e "Greek" -e "Size[1-4]" -e "Typewriter" -e "Win"; then \
+		if echo "$$file" | $(GREP) -q -e "Greek" -e "Size[1-4]" -e "Typewriter" -e "Win"; then \
 			$(TTFAUTOHINT) --windows-compatibility --symbol $$file $$file.hinted; \
 		else \
 			$(TTFAUTOHINT) --windows-compatibility $$file $$file.hinted; \
 		fi; \
-        mv $$file.hinted $$file; \
+		mv $$file.hinted $$file; \
 		done
 
 	./fix_os2_metrics.rb ttf/
