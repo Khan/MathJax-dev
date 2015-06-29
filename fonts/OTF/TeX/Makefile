@@ -107,6 +107,12 @@ ttf: ff
 		$(FONTFORGE) -lang=ff -script ff/$$file; \
 		done
 
+	@for file in `cd ttf; ls *.ttf`; do \
+		echo "hinting $$file"; \
+		$(TTFAUTOHINT) --windows-compatibility $$file $$file.hinted; \
+        mv $$file.hinted $$file; \
+		done
+
 	./fix_os2_metrics.rb ttf/
 eot: ttf
 	mkdir -p eot
