@@ -107,7 +107,7 @@ ttf: ff
 		$(FONTFORGE) -lang=ff -script ff/$$file; \
 		done
 
-	@for file in `cd ttf; ls *.ttf`; do \
+	for file in `cd ttf; ls *.ttf`; do \
 		echo "hinting $$file"; \
 		$(TTFAUTOHINT) --windows-compatibility $$file $$file.hinted; \
         mv $$file.hinted $$file; \
